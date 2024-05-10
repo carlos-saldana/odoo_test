@@ -1,0 +1,85 @@
+<odoo>
+  <data>
+    <!-- DEFINIMOS UNA LISTA (TABLA PRINCIPAL) -->
+    <record model="ir.ui.view" id="indomin.empleado_list">
+
+      <field name="name">LISTA DE EMPLEADOS</field>
+      <field name="model">indomin.empleado</field>
+      <field name="arch" type="xml">
+
+        <tree>
+          <field name="dni"/>
+          <field name="name"/>
+          <field name="exp"/>
+          <field name="fecha_nac"/>
+          <field name="hab"/>
+        </tree>
+
+      </field>
+    </record>
+
+
+    <!-- DEFINIMOS UN FORMULARIO (REGISTRO) -->
+
+    <record model="ir.ui.view" id="indomin.empleado_form">
+
+      <field name="name">FORMULARIO DE EMPLEADOS</field>
+      <field name="model">indomin.empleado</field>
+      <field name="arch" type="xml">
+
+        <form>
+          <group>
+
+            <group>
+              <field name="photo" widget = "image" options = "{'size':(75, 75)}"/>
+              <field name="dni"/>
+              <field name="name"/>
+            </group>
+
+            <group>
+              <field name="exp"/>
+              <field name="fecha_nac"/>
+              <field name="hab"/>
+            </group>
+            
+          </group>
+        </form>
+
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="indomin.empleado_action_window">
+      <field name="name">ACCIÓN DE EMPLEADOS</field>
+      <field name="res_model">indomin.empleado</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="indomin.action_server">
+      <field name="name">indomin server</field>
+      <field name="model_id" ref="model_indomin_indomin"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+    <menuitem name="INDOMIN" id="indomin.menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="BASE DE DATOS" id="indomin.empleado_menu_1" parent="indomin.menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="EMPLEADOS" id="indomin.empleado_menu_1_list" parent="indomin.empleado_menu_1"
+              action="indomin.empleado_action_window"/>
+
+  </data>
+</odoo>
